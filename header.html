@@ -1,46 +1,79 @@
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>LawGrit<span>.</span></h1>
-      </a>
+    <a href="index.html" class="logo d-flex align-items-center">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1>LawGrit<span>.</span></h1>
+    </a>
 
-      <div id="google_translate_element"></div>
-      <div id="google_translate_element"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
+    <div id="google_translate_element"></div>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+      }
+    </script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Fundamental Rights</a></li>
-          <li><a href="projects.html">My Pride</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Latest Information</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="https://law.delhi.gov.in/law/contact-us">Legal Assistance Directory</a></li>
-              <li><a href="https://www.livelaw.in/">News And Updates</a></li>
-              <li><a href="https://www.india.gov.in/topics/law-justice">Legal Resources</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+    <!-- <button id="read-aloud-button" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Read Aloud</button> -->
 
-    </div>
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Fundamental Rights</a></li>
+        <li><a href="projects.html">My Pride</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li class="dropdown"><a href="#"><span>Latest Information</span> <i
+              class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li><a href="https://law.delhi.gov.in/law/contact-us">Legal Assistance Directory</a></li>
+            <li><a href="https://www.livelaw.in/">News And Updates</a></li>
+            <li><a href="https://www.india.gov.in/topics/law-justice">Legal Resources</a></li>
+          </ul>
+        </li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav><!-- .navbar -->
 
-    <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>65dd91a32170949af12e2137,65dd91906feae51c8de4fda8</script>
+  </div>
 
-  </header><!-- End Header -->
+  <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js"
+    defer>65dd91a32170949af12e2137, 65dd91906feae51c8de4fda8</script>
 
+
+  <script>
+    document.addEventListener('mouseup', function () {
+      let selectedText = window.getSelection().toString().trim();
+      if (selectedText.length > 0) {
+        readAloud(selectedText);
+      }
+    });
+
+    function readAloud(text) {
+      if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = detectLanguage(); // Detect language from Google Translate
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Sorry, your browser does not support speech synthesis.');
+      }
+    }
+
+    function detectLanguage() {
+      const translateElement = document.querySelector('.goog-te-combo');
+      if (translateElement) {
+        const selectedLang = translateElement.value;
+        return selectedLang || 'en';
+      }
+      return 'en';
+    }
+  </script>
+
+</header><!-- End Header -->
